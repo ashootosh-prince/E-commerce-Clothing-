@@ -1,9 +1,15 @@
-const express = require("express");
+if(process.env.NODE_ENV != 'production'){
+  require("dotenv").config();
+};
 const app = express();
 const mongoose = require("mongoose");
-const clothing = require("./models/clothing.js");
+const Clothing = require("./models/clothing.js");
+const path = require("path");
+const ejsMate = require("ejs-mate");
+const product = require("./routes/product.js");
 
-const MONGO_URL = "mongodb://localhost:27017/clothing";
+
+const MONGO_URL = process.env.MONGO_URL;
 
 main()
   .then(() => {
@@ -13,32 +19,27 @@ main()
     console.log(err);
   });
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 }
-app.get("/", (req, res) => {
-    res.send("i am root");
-  });
 
-  app.get("/test", async(req, res) => {
-    let samplesClothing = new clothing({
-        name: "Blackberry Bomber",       
-        category:"Bomber",
-        image: "https://images.unsplash.com/photo-1611593006970-1b8cd8a27873?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        color: "black",
-        size: "M",
-        price: "2999",
-        description: "100% cotton",
-        brand: "blackberry",
-    });
-   await samplesClothing.save();
-    console.log("SamplesClothing saved successfully");
-    res.send("test done");
-  });
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({ extended: true }));
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.json());
 
+app.use("/clothing", product);
 
+app.get("/", async (req, res) => {
+  const clothing = await Clothing.find({});
+  res.render("search", { clothing });
+});
 
 const port = 8080;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-

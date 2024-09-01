@@ -1,0 +1,20 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    
+    <div class="row  mt-5">
+        <div class=" card col-6 show-page mb-5 ms-5">
+            <img src=<%=clothing.image%> class="show-card-img mb-5 mt-2" alt="clothing_image">            
+        </div>
+        <div class="col-6 mb-4 mx-5" style="margin-top: 5rem;">
+            <p><b>&#8377;<%= clothing.price.toLocaleString("en-IN") %></b></p>
+            <p class="text-muted fw-semibold ">Brand : <%= clothing.brand %></p>
+            <p><b><%= clothing.name %></b></p>
+            <p>Category : <%= clothing.category %></p>
+            <p> Description : <%= clothing.description %></p>
+            <div class="mb-4 p-5">
+                <button type="button" class="btn btn-success me-5 w-25"> <b>BUY NOW</b> </button>
+                <button type="button" class="btn btn-danger"><i class="fa-solid fa-cart-shopping"></i> <b>ADD TO CART</b></button>
+            </div>
+        </div>
+    </div>
+</body>

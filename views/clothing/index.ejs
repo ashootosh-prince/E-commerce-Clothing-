@@ -1,0 +1,24 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    <div class="row row-cols-lg-6 row-cols-md-3 row-cols-sm-2">
+    <% for(let clothing of allClothings) { %>
+    <div class="card col mb-4" style="width: 10rem;">
+        <a href="/clothing/ <%= clothing._id%>">
+            <img src=<%=clothing.image%> class="card-img-top" alt="clothing_image">
+        </a>
+        
+        <div class="card-body" style="height: 5rem;line-height: 1">
+            <a href="/clothing/ <%= clothing._id%>">
+            <p class="text-muted fw-semibold " style="font-size: 12px;"><%= clothing.brand %></p>
+          <p class="fw-semibold"style="font-size: 15px;"><%=clothing.name%>
+            <br/>
+            &#8377;<%=clothing.price.toLocaleString("en-IN")%>
+            </p>
+        </a>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    </body>
+    
+

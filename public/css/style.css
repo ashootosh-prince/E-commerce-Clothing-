@@ -1,0 +1,88 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Footer */
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+.f-info-link,
+.f-info-brand,
+.f-info-socials {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  margin-right: 1rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #222222;
+}
+
+.f-info {
+  width: 100%;
+  text-align: center;
+  height: 6.1rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+}
+
+/* Cards */
+.card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+.card-img-top {
+  border: 1rem !important;
+  width: 100%;
+  object-fit: cover !important;
+  height: 10rem !important;
+}
+
+/* show page */
+.show-card-img {
+  width: 100%;
+  height: inherit;
+  border-radius: 10px;
+}
+
+.show-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28rem !important;
+  width: 25rem !important;
+  object-fit: cover !important;
+}
+.btn {
+  width: 12rem !important;
+  height: 3rem !important;
+}
+
+/* search-bar */
+.result-box {
+  width: 40%;
+  margin-top: 2rem !important;
+  margin-left: 30%;
+}
+
+.search-box input {
+  width: 500px;
+  margin-left: 30%;
+  padding: 10px;
+}
+.payload:hover {
+  color: rgb(252, 73, 73) !important;
+}
