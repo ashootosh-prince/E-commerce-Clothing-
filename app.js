@@ -1,6 +1,7 @@
 if(process.env.NODE_ENV != 'production'){
   require("dotenv").config();
 };
+const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Clothing = require("./models/clothing.js");
@@ -9,7 +10,7 @@ const ejsMate = require("ejs-mate");
 const product = require("./routes/product.js");
 
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL =process.env.MONGO_URL;
 
 main()
   .then(() => {
@@ -33,11 +34,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 
 app.use("/clothing", product);
-
-app.get("/", async (req, res) => {
-  const clothing = await Clothing.find({});
-  res.render("search", { clothing });
-});
 
 const port = 8080;
 app.listen(port, () => {
